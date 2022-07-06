@@ -77,18 +77,25 @@
           privateKey: privKey
         })
         const base64UserData = btoa(userDataLocalStorage)
-        switch (new URL(window?.location.toString()).searchParams.get('platform')) {
+        const url = new URL(window?.location.toString())
+        const urlParams = url.searchParams
+        const _callbackUrl = urlParams.get('callback')
+        const callbackUrl = new URL(_callbackUrl)
+        callbackUrl.searchParams.set('user_data', base64UserData)
+        switch (urlParams.get('platform')) {
           case 'electron': {
-            window.location.assign(`circles-something://open?user_data=${base64UserData}`)
+            //`circles-something://open?user_data=${base64UserData}`
+            window.location.assign(callbackUrl.toString())
             break
           }
           case 'capacitor': {
+            //`https://web-host-iota.vercel.app/open/?user_data=${base64UserData}`
             // @ts-ignore
-            window.location = `https://web-host-iota.vercel.app/open/?user_data=${base64UserData}`
+            window.location = callbackUrl.toString()
             break
           }
           default: {
-            window.location.assign(`http://localhost:3000?user_data=${base64UserData}`)
+            window.location.assign(callbackUrl.toString())
             break
           }
         }
