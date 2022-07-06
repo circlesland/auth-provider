@@ -1,1 +1,1 @@
-export const WEB3AUTH_CLIENT_ID = process.env.CLIENT_ID;
+export const WEB3AUTH_CLIENT_ID = process.env.CLIENT_ID || 'BFhfbhaiGyShjMhp_Im2MMAaNbnEdAL4zqXp2Qb7vMKpkuXnPGJ5LCVOICApQsquuVYWRyvpAtRFNrmOqFdw8nQ';
