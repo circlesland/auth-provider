@@ -3,7 +3,8 @@
   import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
   import { onMount } from 'svelte'
 
-  let clientId = process.env.CLIENT_ID
+  let clientId =
+    'BFhfbhaiGyShjMhp_Im2MMAaNbnEdAL4zqXp2Qb7vMKpkuXnPGJ5LCVOICApQsquuVYWRyvpAtRFNrmOqFdw8nQ'
   let web3Auth
   let provider
   let userInfo
@@ -83,7 +84,7 @@
           }
           case 'capacitor': {
             window.location.assign(
-              `https://dummy-circles-wallet.vercel.app/open/?user_data=${base64UserData}`
+              `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`
             )
             break
           }
