@@ -84,7 +84,7 @@
           }
           case 'capacitor': {
             // @ts-ignore
-            window.location = `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`
+            window.location = `https://web-host-iota.vercel.app/open/?user_data=${base64UserData}`
             break
           }
           default: {
