@@ -28,11 +28,7 @@ const development = merge([
 const production = merge(
   [
     { entry: ['./src/index.ts'] },
-    {plugins: [new NodePolyfillPlugin(),  new CopyPlugin({
-      patterns: [
-        { from: "public", to: "." },
-      ],
-    }),]},
+    {plugins: [new NodePolyfillPlugin()]},
     parts.typescript(),
     parts.optimize(),
     analyze && parts.analyze()
