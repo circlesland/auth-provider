@@ -3,8 +3,7 @@
   import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
   import { onMount } from 'svelte'
 
-  let clientId =
-    'BFhfbhaiGyShjMhp_Im2MMAaNbnEdAL4zqXp2Qb7vMKpkuXnPGJ5LCVOICApQsquuVYWRyvpAtRFNrmOqFdw8nQ'
+  let clientId = process.env.CLIENT_ID
   let web3Auth
   let provider
   let userInfo
