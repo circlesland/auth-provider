@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { WEB3AUTH_CLIENT_ID } from './../config/web3auth.ts'
   import { Web3Auth } from '@web3auth/web3auth'
   import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
   import { onMount } from 'svelte'
 
-  let clientId = process.env.CLIENT_ID
+  let clientId = WEB3AUTH_CLIENT_ID
   let web3Auth
   let provider
   let userInfo
