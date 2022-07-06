@@ -83,7 +83,7 @@
             break
           }
           case 'capacitor': {
-            window.location.assign(
+            window.open(
               `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`
             )
             break
