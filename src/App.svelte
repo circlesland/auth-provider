@@ -83,10 +83,8 @@
             break
           }
           case 'capacitor': {
-            window.open(
-              `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`,
-              '_blank'
-            )
+            // @ts-ignore
+            window.location = `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`
             break
           }
           default: {
