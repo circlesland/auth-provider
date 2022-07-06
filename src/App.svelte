@@ -107,6 +107,6 @@
   <button on:click={getUserInfo}>User Info</button>
 
   {#if userInfo}
-    <div class="mt-8"><button on:click={continueToApp}>Continue to the App</button></div>
+    <div class="mt-8"><button on:click={continueToApp}>Continue to App</button></div>
   {/if}
 </div>
