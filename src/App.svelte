@@ -84,7 +84,8 @@
           }
           case 'capacitor': {
             window.open(
-              `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`
+              `https://auth-provider.vercel.app/open/?user_data=${base64UserData}`,
+              '_blank'
             )
             break
           }
