@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { WEB3AUTH_CLIENT_ID } from './../config/web3auth.ts'
+  import { WEB3AUTH_CLIENT_ID } from './../config/web3auth'
   import { Web3Auth } from '@web3auth/web3auth'
   import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
   import { onMount } from 'svelte'
