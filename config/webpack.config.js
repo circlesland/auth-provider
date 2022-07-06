@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge')
 const parts = require('./webpack.parts')
 const { mode, analyze } = require('webpack-nano/argv')
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const common = merge([
   { output: { path: path.resolve(process.cwd(), 'dist') } },
@@ -27,7 +28,11 @@ const development = merge([
 const production = merge(
   [
     { entry: ['./src/index.ts'] },
-    {plugins: [new NodePolyfillPlugin()]},
+    {plugins: [new NodePolyfillPlugin(),  new CopyPlugin({
+      patterns: [
+        { from: "public", to: "." },
+      ],
+    }),]},
     parts.typescript(),
     parts.optimize(),
     analyze && parts.analyze()
