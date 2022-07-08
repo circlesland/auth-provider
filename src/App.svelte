@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { doRedirect } from './../utils/redirect'
   import { WEB3AUTH_CLIENT_ID } from './../config/web3auth'
   import { Web3Auth } from '@web3auth/web3auth'
   import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from '@web3auth/base'
   import { onMount } from 'svelte'
+  import { dummyAccounts } from '../config/dummy-accounts'
 
   let clientId = WEB3AUTH_CLIENT_ID
   let web3Auth
@@ -67,39 +69,28 @@
   }
 
   const continueToApp = async () => {
-    web3Auth.provider
-      .request({
+    const url = new URL(window?.location.toString())
+    const urlParams = url.searchParams
+
+    if (urlParams.has('test_account')) {
+      const accountIndex = parseInt(urlParams.get('test_account'))
+      const base64UserData = dummyAccounts[accountIndex]
+
+      doRedirect(base64UserData)
+    } else {
+      const privKey = await web3Auth.provider.request({
         method: 'eth_private_key'
       })
-      .then(privKey => {
-        const userDataLocalStorage = JSON.stringify({
-          ...localStorage,
-          privateKey: privKey
-        })
-        const base64UserData = btoa(userDataLocalStorage)
-        const url = new URL(window?.location.toString())
-        const urlParams = url.searchParams
-        const _callbackUrl = urlParams.get('callback')
-        const callbackUrl = new URL(_callbackUrl)
-        callbackUrl.searchParams.set('user_data', base64UserData)
-        switch (urlParams.get('platform')) {
-          case 'electron': {
-            //`circles-something://open?user_data=${base64UserData}`
-            window.location.assign(callbackUrl.toString())
-            break
-          }
-          case 'capacitor': {
-            //`https://web-host-iota.vercel.app/open/?user_data=${base64UserData}`
-            // @ts-ignore
-            window.location = callbackUrl.toString()
-            break
-          }
-          default: {
-            window.location.assign(callbackUrl.toString())
-            break
-          }
-        }
+
+      const userDataLocalStorage = JSON.stringify({
+        ...localStorage,
+        privateKey: privKey
       })
+
+      const base64UserData = btoa(userDataLocalStorage)
+
+      doRedirect(base64UserData)
+    }
   }
 </script>
 
