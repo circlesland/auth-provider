@@ -10,6 +10,7 @@
   let web3Auth
   let provider
   let userInfo
+  let hasDummyAccount = false
 
   const subscribeAuthEvents = web3auth => {
     web3auth.on('connected', data => {
@@ -40,6 +41,10 @@
     }
 
     init()
+
+    if (new URL(window.location.toString()).searchParams.get('test_account')) {
+      hasDummyAccount = true
+    }
   })
 
   const login = async () => {
@@ -94,6 +99,8 @@
   }
 </script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <div style="margin-top: 100px;">
   <p>{userInfo}</p>
   {#if !provider}
@@ -103,7 +110,7 @@
   {/if}
   <button on:click={getUserInfo}>User Info</button>
 
-  {#if userInfo}
+  {#if userInfo || hasDummyAccount}
     <div class="mt-8"><button on:click={continueToApp}>Continue to App</button></div>
   {/if}
 </div>
