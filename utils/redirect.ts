@@ -1,10 +1,11 @@
-export const doRedirect = (base64UserData: string) => {
+export const doRedirect = (base64UserData?: string) => {
     const url = new URL(window?.location.toString())
     const urlParams = url.searchParams
 
     const _callbackUrl = urlParams.get('callback')
     if(_callbackUrl) {
         const callbackUrl = new URL(_callbackUrl)
+        if(base64UserData)
         callbackUrl.searchParams.set('user_data', base64UserData)
 
         switch (urlParams.get('platform')) {

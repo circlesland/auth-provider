@@ -15,7 +15,15 @@
   const subscribeAuthEvents = web3auth => {
     web3auth.on('connected', data => {
       if (data) {
-        getUserInfo()
+        if (!new URL(window.location.toString()).searchParams.get('logout')) {
+          continueToApp()
+        }
+      }
+    })
+
+    web3auth.on('MODAL_VISIBILITY', isVisible => {
+      if (!isVisible) {
+        doRedirect()
       }
     })
   }
@@ -35,6 +43,8 @@
         await web3Auth.initModal()
 
         provider = web3Auth.provider
+
+        login()
       } catch (error) {
         console.error('err', error)
       }
@@ -93,6 +103,8 @@
       })
 
       const base64UserData = btoa(userDataLocalStorage)
+
+      logout()
 
       doRedirect(base64UserData)
     }
