@@ -43,9 +43,18 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
+    "@ceramicnetwork/blockchain-utils-linking": "^2.0.7",
+    "@ceramicnetwork/http-client": "^2.3.0",
+    "@glazed/did-datastore": "^0.3.2",
+    "@glazed/did-session": "^0.1.1",
+    "@orbisclub/orbis-sdk": "^0.2.65",
     "@web3auth/base": "^1.1.0",
     "@web3auth/web3auth": "^1.1.0",
+    "dids": "^3.2.0",
     "electron-squirrel-startup": "^1.0.0",
-    "svelte-inline-svg": "^1.0.8"
+    "ethers": "^5.6.9",
+    "key-did-resolver": "^2.0.5",
+    "svelte-inline-svg": "^1.0.8",
+    "web3": "^1.7.4"
   }
 }
